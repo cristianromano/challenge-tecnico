@@ -39,7 +39,7 @@ const Header: React.FC = () => {
                 />
               </svg>
 
-              <span>{i18n.language === "es" ? "English" : "Español"}</span>
+              <span>{t("toggleLang")}</span>
             </button>
           </div>
         </div>

@@ -30,12 +30,26 @@ const resources = {
   },
 };
 
+const savedLang =
+  typeof window !== "undefined" ? localStorage.getItem("lang") : null;
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: "es",
+  lng: savedLang || "es",
   interpolation: {
     escapeValue: false,
   },
+});
+
+i18n.on("languageChanged", (lng) => {
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.setItem("lang", lng);
+    } catch (e) {}
+    try {
+      document.documentElement.lang = lng;
+    } catch (e) {}
+  }
 });
 
 export default i18n;
